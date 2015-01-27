@@ -1,10 +1,17 @@
-$("#data_fields_generate").click(function ()
+$("#data_container_generate").click(function ()
 {
-     $("#data_fields").html("");
-    var ticker_symbols = $("input[name='ticker_symbols']").val();
+     $(".data_container").html("");
+    //var ticker_symbols = $("input[name='ticker_symbols']").val();
+	var array = $("input[name='ticker_symbols']").val().split(", ");
 
-    for (i=0; i<=ticker_symbols-1; i++)
+    for (i=0; i<array.length; i++)
     {
-        $("#data_fields").append("<div> hello world </div>");
+        //alert(array[i]);
+        var symbol = array[i].toString();
+        //run calculations on symbols here
+        
+        
+        $(".data_container").append('<div class="data_child" id="stock_info'+i+'"> </div>');
+        $('#stock_info'+i+'').text(symbol);
     } 
 });

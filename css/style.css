@@ -2,3 +2,15 @@
 	margin-right: auto;
 	margin-left: auto;
 }
+
+.data_container {
+    width: 100%;
+    border: 1px solid black;
+    display: table;
+    table-layout: fixed;
+}
+
+.data_child {
+    border: 1px solid grey;
+    display: table-cell;
+}
