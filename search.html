@@ -71,17 +71,17 @@
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
       </nav>
-
-      <!-- Main component for a primary marketing message or call to action -->
-      <div class="jumbotron">
-        <h1>Stock Comparison Tool</h1>
-        <p>This stock comparison tool...(insert catchy phrase here)</p>
-        <p>
-          <a class="btn btn-lg btn-primary" href="search.html" role="button">Start Comparing Stocks! &raquo;</a>
-        </p>
-      </div>
-
+		<div class="search_stocks">
+			<form id="stock_form">
+				<label for="ticker_symbols">Input symbols:</label><input type="text" name="ticker_symbols" />
+				<button type="button" id="data_fields_generate">Generate Fields!</button>
+				<div id="data_fields">
+		
+				</div>
+			</form>
+		</div>
     </div> <!-- /container -->
+	
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
