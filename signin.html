@@ -69,14 +69,14 @@
       </div><!--/.container-fluid -->
       </nav>
 
-      <form class="form-signin">
+      <form class="form-signin" action="check_login.php" method="post">
         <h2 class="form-signin-heading">Please sign in</h2>
         <div class="form-group">
         <label for="inputEmail" class="sr-only">Email address</label>
-        <input style="width: 30%" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+        <input name="myusername" style="width: 30%" type="text" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
         </div>
         <label for="inputPassword" class="sr-only">Password</label>
-        <input style="width: 30%" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <input name="mypassword" style="width: 30%" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
         <div class="checkbox">
           <label>
             <input type="checkbox" value="remember-me"> Remember me
