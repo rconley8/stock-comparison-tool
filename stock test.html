@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<body>
+ 
+    <button onclick="getInfo('GOOG')">Google!</button>
+    <button onclick="getInfo('AAPL')">Apple!</button>
+    <button onclick="getInfo('YHOO')">Yahoo!</button>
+    <button onclick="getInfo('AMZN')">Amazon!</button>
+    
+<script>
+var stocks;
+
+function getInfo(stock){
+    stocks = stock;
+    getStockInfo();
+}
+function getStockInfo(){
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.open("GET","http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22" + stocks + "%22)&env=store://datatables.org/alltableswithkeys",false);
+xmlhttp.send();
+xmlDoc=xmlhttp.responseXML;
+ 
+x=xmlDoc.getElementsByTagName('quote');
+ 
+for (i=0;i<x.length;i++){
+    document.write(x[i].getElementsByTagName("Name")[0].childNodes[0].nodeValue);
+    document.write(" (" + x[i].getAttribute('symbol') + ")");
+    document.write("<br>");
+    document.write("<p>");
+    document.write("Days Low: " + x[i].getElementsByTagName("DaysLow")[0].childNodes[0].nodeValue);
+    document.write("<br>");
+    document.write("Days High: " + x[i].getElementsByTagName("DaysHigh")[0].childNodes[0].nodeValue);
+    document.write("<br>");
+    document.write("Day Change: <span id='change" + i + "'>" + x[i].getElementsByTagName("Change")[0].childNodes[0].nodeValue + "</span> ");
+    document.write("<span id='percentchange" + i + "'>(" + x[i].getElementsByTagName("PercentChange")[0].childNodes[0].nodeValue + ")</span>");
+    stockChangeColor(i);
+    document.write("<br>");
+    document.write("Stock Price: " + x[i].getElementsByTagName("Ask")[0].childNodes[0].nodeValue);
+    document.write("<br>");
+    document.write("50 Day Moving Average: " + x[i].getElementsByTagName("FiftydayMovingAverage")[0].childNodes[0].nodeValue);
+    document.write("<br>");
+    document.write("<img src='http://chart.finance.yahoo.com/t?s=" + stocks + "&amp;lang=en-US&amp;region=US&amp;width=300&amp;height=180' alt='Apple Inc. (AAPL)' width='300' height='180'>");
+    document.write("</p>");
+    }
+}
+
+function stockChangeColor(i){
+    var value = x[i].getElementsByTagName("Change")[0].childNodes[0].nodeValue;
+    var find = value.search("-");
+    if (find != -1){
+        document.getElementById("change" + i + "").style.color = "red"
+        document.getElementById("percentchange" + i + "").style.color = "red"
+    }else{
+        document.getElementById("change" + i + "").style.color = "green"
+        document.getElementById("percentchange" + i + "").style.color = "green"
+    }
+    return value;
+}
+</script>
+
+ 
+</body>
+</html>
