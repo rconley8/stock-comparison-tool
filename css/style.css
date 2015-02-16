@@ -4,13 +4,14 @@
 }
 
 .data_container {
-    width: 100%;
-    border: 1px solid black;
+	padding-top: 20px;
+    border: 1px solid white;
     display: table;
     table-layout: fixed;
 }
 
 .data_child {
-    border: 1px solid grey;
+    border: 1px solid white;
     display: table-cell;
+	width: 200px;
 }
