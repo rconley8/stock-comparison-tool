@@ -38,6 +38,6 @@ $_SESSION['mypassword'] = $encrypt_password;
 header("location:login_success.php");
 }
 else {
-echo "Wrong Username or Password";
+header("location:signin.html?l=failed");
 }
 ?>

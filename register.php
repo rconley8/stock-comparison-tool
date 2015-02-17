@@ -31,15 +31,19 @@ if(mysql_num_rows($sql) == 0) {
         $data = mysql_query ($query1)or die(mysql_error());
         if($data) {
             echo "YOUR REGISTRATION IS COMPLETED...";
+            header("location:signin.html?r=s");
         }
         }else{
             echo "Passwords are not the same.....";
+            header("location:signup.html?r=failedP");
         }
     } else {
         echo "SORRY...USERNAME HAS ALREADY BEEN REGISTERED...";
+        header("location:signup.html?r=failedU");
     }
 }else{
     echo "This Email address has already been registered...";
+    header("location:signup.html?r=failedE");
 }
 
 
