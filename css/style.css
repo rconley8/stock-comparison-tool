@@ -78,6 +78,25 @@ label {
 	border: 0px;
 }
 
+.dropdown-menu>li>a {
+	color: rgba(18, 83, 88, 1);
+}
+
+.dropdown-menu>li>a:hover {
+	background-color: rgba(18, 83, 88, 1);
+	color: #FFFFFF;
+}
+
+.dropdown-menu>.active>a {
+	background-color: #F0F0F0;
+	color: rgba(18, 83, 88, 1);
+}
+
+.dropdown-menu>.active>a:hover {
+	background-color: rgba(18, 83, 88, 1);
+	color: #FFFFFF;
+}
+
 .search_stocks { 
 	margin-right: auto;
 	margin-left: auto;
