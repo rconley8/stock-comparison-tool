@@ -1,3 +1,83 @@
+body {
+	background-color: #FFFFFF;
+}
+
+#custom-bootstrap-menu.navbar-default .navbar-brand {
+    color: rgba(18, 83, 88, 1);
+}
+
+#custom-bootstrap-menu.navbar-default .navbar-brand:hover {
+    color: rgba(62, 92, 95, 1);
+}
+
+#custom-bootstrap-menu.navbar-default {
+    font-size: 15px;
+    background-color: #F0F0F0;
+    border: 1px solid;
+    border-color: #537C80;
+    border-radius: 7px;
+}
+
+#custom-bootstrap-menu.navbar-default .navbar-nav>li>a {
+    color: rgba(18, 83, 88, 1);
+    background-color: #F0F0F0;
+}
+
+#custom-bootstrap-menu.navbar-default .navbar-nav>li>a:hover,
+#custom-bootstrap-menu.navbar-default .navbar-nav>li>a:focus {
+    color: rgba(62, 92, 95, 1);
+    background-color: #FFFFFF;
+}
+
+#custom-bootstrap-menu.navbar-default .navbar-nav>.active>a,
+#custom-bootstrap-menu.navbar-default .navbar-nav>.active>a:hover,
+#custom-bootstrap-menu.navbar-default .navbar-nav>.active>a:focus {
+    color: rgba(62, 92, 95, 1);
+    background-color: rgba(231, 231, 231, 1);
+}
+
+#custom-bootstrap-menu.navbar-default .navbar-toggle {
+    border-color: #ddd;
+}
+
+#custom-bootstrap-menu.navbar-default .navbar-toggle:hover,
+#custom-bootstrap-menu.navbar-default .navbar-toggle:focus {
+    background-color: #ddd;
+}
+#custom-bootstrap-menu.navbar-default .navbar-toggle .icon-bar {
+    background-color: #888;
+}
+
+#custom-bootstrap-menu.navbar-default .navbar-toggle:hover .icon-bar,
+#custom-bootstrap-menu.navbar-default .navbar-toggle:focus .icon-bar {
+    background-color: #000000;
+}
+
+.jumbotron {
+	border: 1px solid;
+	border-color: #537C80;
+}
+
+.form-signin-heading {
+    color: rgba(58, 58, 58, 1);
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+label {
+    color: rgba(62, 92, 95, 1);
+}
+
+.btn-primary {
+	background-color: #537C80;
+	border: 0px;
+	color: #FFFFFF;
+}
+
+.btn-primary:hover {
+	background-color: #7CBABF;
+	border: 0px;
+}
+
 .search_stocks { 
 	margin-right: auto;
 	margin-left: auto;
@@ -5,13 +85,13 @@
 
 .data_container {
 	padding-top: 20px;
-    border: 1px solid white;
+    border: 0px solid white;
     display: table;
     table-layout: fixed;
 }
 
 .data_child {
-    border: 1px solid white;
+    border: 0px solid white;
     display: table-cell;
 	width: 200px;
 }

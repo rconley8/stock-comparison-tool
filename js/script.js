@@ -1,3 +1,9 @@
+$('#stock_form').submit(function(event){
+	event.preventDefault();
+	$('#data_container_generate').trigger('click');
+});
+
+
 $("#data_container_generate").click(function ()
 {
     $(".data_container").html("");
