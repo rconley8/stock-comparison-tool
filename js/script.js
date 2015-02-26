@@ -44,7 +44,7 @@ $("#data_container_generate").click(function ()
 			$('#stock_info'+i+'').append("Day Change: <span id='change" + i + "'>" + x[t].getElementsByTagName("Change")[0].childNodes[0].nodeValue + "</span> ");
 			$('#stock_info'+i+'').append("<span id='percentchange" + i + "'>(" + x[t].getElementsByTagName("PercentChange")[0].childNodes[0].nodeValue + ")</span>");
 			$('#stock_info'+i+'').append("<br>");
-			$('#stock_info'+i+'').append("Stock Price: " + x[t].getElementsByTagName("Ask")[0].childNodes[0].nodeValue);
+			$('#stock_info'+i+'').append("Stock Price: " + x[t].getElementsByTagName("LastTradePriceOnly")[0].childNodes[0].nodeValue);
 			$('#stock_info'+i+'').append("<br>");
 			$('#stock_info'+i+'').append("50 Day Moving Average: " + x[t].getElementsByTagName("FiftydayMovingAverage")[0].childNodes[0].nodeValue);
 			$('#stock_info'+i+'').append("<br>");
