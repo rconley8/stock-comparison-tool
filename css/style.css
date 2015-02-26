@@ -67,13 +67,13 @@ label {
     color: rgba(62, 92, 95, 1);
 }
 
-.btn-primary {
+.btn {
 	background-color: #537C80;
 	border: 0px;
 	color: #FFFFFF;
 }
 
-.btn-primary:hover {
+.btn:hover {
 	background-color: #7CBABF;
 	border: 0px;
 }
