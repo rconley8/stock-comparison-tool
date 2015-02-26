@@ -1,4 +1,3 @@
-
 <?php
 //Checks to see if session is still valid
 session_start();
@@ -53,7 +52,7 @@ if(!$_SESSION['myusername']){
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-              <li class="active"><a href="index.html">Home</a></li>
+              <li><a href="index.html">Home</a></li>
               <li class="dropdown">
                 <a href="about.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">About <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
@@ -70,7 +69,7 @@ if(!$_SESSION['myusername']){
               <li><a href="contact.html">Contact</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="account.php">Welcome, <?php echo $_SESSION['myusername'] ?> </a></li>  
+              <li  class="active"><a href="account.php">Welcome, <?php echo $_SESSION['myusername'] ?> </a></li>  
               <li><a href="Logout.php">Logout <span class="sr-only">(current)</span></a></li>
             </ul>
           </div><!--/.nav-collapse -->
@@ -80,9 +79,9 @@ if(!$_SESSION['myusername']){
       <!-- Main component for a primary marketing message or call to action -->
       <div class="jumbotron">
         <h1>Stock Comparison Tool</h1>
-        <p>Congratulations you have successfully logged in!</p>
+        <p>This is the account home page</p>
         <p>
-          <a class="btn btn-lg btn-primary" href="#" role="button">Start Comparing Stocks! &raquo;</a>
+          
         </p>
       </div>
 

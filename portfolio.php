@@ -1,4 +1,3 @@
-
 <?php
 //Checks to see if session is still valid
 session_start();
@@ -24,6 +23,8 @@ if(!$_SESSION['myusername']){
 
     <!-- Custom styles for this template -->
     <link href="navbar.css" rel="stylesheet">
+    
+    <link href="css/style.css" rel="stylesheet">
 
     <script src="js/ie-emulation-modes-warning.js"></script>
 
@@ -39,7 +40,6 @@ if(!$_SESSION['myusername']){
     <div class="container">
 
       <!-- Static navbar -->
-<!-- Static navbar -->
       <nav class="navbar navbar-default">
         <div class="container-fluid">
           <div class="navbar-header">
@@ -53,7 +53,7 @@ if(!$_SESSION['myusername']){
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-              <li class="active"><a href="index.html">Home</a></li>
+              <li><a href="index.html">Home</a></li>
               <li class="dropdown">
                 <a href="about.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">About <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
@@ -66,7 +66,7 @@ if(!$_SESSION['myusername']){
                 </ul>
               </li>
               <li><a href="search.html">Search Stocks</a></li>
-              <li><a href="portfolio.php">My Portfolio</a></li>
+              <li class="active"><a href="portfolio.php">My Portfolio</a></li>
               <li><a href="contact.html">Contact</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -80,14 +80,13 @@ if(!$_SESSION['myusername']){
       <!-- Main component for a primary marketing message or call to action -->
       <div class="jumbotron">
         <h1>Stock Comparison Tool</h1>
-        <p>Congratulations you have successfully logged in!</p>
+        <p>PORTFOLIO</p>
         <p>
-          <a class="btn btn-lg btn-primary" href="#" role="button">Start Comparing Stocks! &raquo;</a>
+          <a class="btn btn-lg btn-primary" href="search.html" role="button">Start Comparing Stocks! &raquo;</a>
         </p>
       </div>
 
     </div> <!-- /container -->
-
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -96,5 +95,6 @@ if(!$_SESSION['myusername']){
     <script src="js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="js/ie10-viewport-bug-workaround.js"></script>
+    <script src="js/script.js"></script>
   </body>
 </html>
