@@ -3,7 +3,7 @@ html, body {
 	min-width: 960px;
 }
 
-#body_container {
+.body_container {
 	background: #F0F0F0;
 	border: 1px solid rgba(18, 83, 88, 1);
 	border-radius: 15px;
@@ -117,15 +117,21 @@ label {
 
 .data_container {
 	padding-top: 20px;
-   
     //display: table;
     //table-layout: fixed;
 }
 
 .data_child {
+	padding-top: 15px;
     border: 1px solid white;
 	width: 800px;
 }
+
+th {
+	border: 1px solid white;
+	color: #537C80;
+}
+
 td {
 	border: 0px solid white;
 }
