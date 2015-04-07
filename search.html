@@ -74,26 +74,36 @@
 		</div>
     </div> <!-- /container -->
 	<div id="dialog-1" title="Add to Portfolio">
-		<p class="validateStock">Choose your options below:</p>
 		
 		<form>
 			<fieldset>
-				<label for="quantity">Quantity</label>
-				<input type="text" name="quantity" id="quantity" value="1" class="text ui-widget-content ui-corner-all">
-				<label for="price">Price</label>
-				<!--<p name="price" id="dialog_price"></p>-->
-				<input type="text" name="price" id="dialog_price" value="0" readonly class="text ui-widget-content ui-corner-all">
-				<label for="cost">Cost</label>
-				<input type="text" name="cost" id="Cost" readonly value="$0.00" class="text ui-widget-content ui-corner-all">
-				<label for="cash">Available Funds</label>
-				<p name="cash" id="av_funds_output">Test</p>
-				<input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
-				<button type="button" id="add_btn" class="btn2">Add</button>
+				<legend>
+					Choose your options below:
+				</legend>
+				<ol style="list-style-type:none;">
+					<li>
+						<label for="quantity">Quantity</label>
+						<input type="text" name="quantity" id="quantity" value="1" class="text ui-widget-content ui-corner-all">
+					</li>
+					<li>
+						<label for="price">Price</label>
+						<!--<p name="price" id="dialog_price"></p>-->
+						<input type="text" name="price" id="dialog_price" value="0" readonly class="text ui-widget-content ui-corner-all">
+					</li>
+					<li>
+						<label for="cost">Cost</label>
+						<input type="text" name="cost" id="Cost" readonly value="$0.00" class="text ui-widget-content ui-corner-all">
+					</li>
+					<li>
+						<label for="cash">Available Funds</label>
+						<p name="cash" id="av_funds_output">Test</p>
+						<!--<input type="submit" tabindex="-1" style="position:absolute; top:-1000px">-->
+					</li>
+				</ol>
 			</fieldset>
+			<button type="button" id="add_btn" class="btn2">Add</button>
 		</form>
 	</div>
-    
-
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

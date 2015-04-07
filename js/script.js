@@ -63,31 +63,22 @@ $( "#dialog-1" ).dialog({
    autoOpen: false,  
 });
 
-
-// $(".add_btn").click(function(){
-// 	var id = this.id;
-// 	alert(id);
-// 	$( "#dialog-1" ).css({'display' : ''});
-// 	$( "#dialog-1" ).dialog( "open" );
-// });
 function openDialog(clicked_id){
 		//Use button ID to get i so that you can grab price+i
 		var id = clicked_id;
 		var thenum = id.replace( /^\D+/g, ''); // replace all leading non-digits with nothing
-		var priceid = "price" + thenum
+		var priceid = "price" + thenum;
 		var pricedata = document.getElementById(priceid);
-		$( "#dialog_price" ).val(pricedata.innerHTML);
+		$("#dialog_price").val(pricedata.innerHTML);
 		$('#Cost').val(pricedata.innerHTML);
-		$( "#dialog-1" ).css({'display' : ''});
-		$( "#dialog-1" ).dialog( "open" );
+		$("#dialog-1").css({'display' : ''});
+		$("#dialog-1").dialog("open");
 }
 
 $('#quantity').on('keyup',function(){
     var tot = $('#dialog_price').val() * this.value;
     $('#Cost').val(tot);
-    //$('#total').val(tot);
 });
-
 
 //jQuery for dropdown on hover
 $('.dropdown-toggle').click(function() {
