@@ -35,12 +35,12 @@ $("#data_container_generate").click(function ()
 		{	
 			$('#table_info'+i+'').append("<tr><th>Name</th><th>Days Low</th><th>Days High</th><th>Day Change</th><th>Percent Change</th><th>Stock Price</th><th>50 Day Moving Average</th><th>Yahoo Finance Chart</th></tr>");	
 			$('#table_info'+i+'').append('<tr>' + 
-			'<td>' + x[t].getElementsByTagName("Name")[0].childNodes[0].nodeValue + ' (' + x[t].getAttribute('symbol') + ') <button type="button" onClick="myFunction()" id="GOOG" value="GOOG">Add to Portfolio</button></td>' + 
+			'<td>' + x[t].getElementsByTagName("Name")[0].childNodes[0].nodeValue + ' (' + x[t].getAttribute('symbol') + ') <button type="button" onClick="openDialog(this.id)" id="btn' + i + '" class="btn2">Add to Portfolio</button></td>' + 
 			'<td>' + x[t].getElementsByTagName("DaysLow")[0].childNodes[0].nodeValue + '</td>' + 
 			'<td>' + x[t].getElementsByTagName("DaysHigh")[0].childNodes[0].nodeValue + '</td>' + 
 			'<td>' + "<span id='change" + i + "'>" + x[t].getElementsByTagName("Change")[0].childNodes[0].nodeValue + "</span> " + '</td>' + 
 			'<td>' + "<span id='percentchange" + i + "'>(" + x[t].getElementsByTagName("PercentChange")[0].childNodes[0].nodeValue + ")</span>" + '</td>' + 
-			'<td>' + x[t].getElementsByTagName("LastTradePriceOnly")[0].childNodes[0].nodeValue + '</td>' + 
+			"<td id='price" + i + "'>" + x[t].getElementsByTagName("LastTradePriceOnly")[0].childNodes[0].nodeValue + '</td>' + 
 			'<td>' + x[t].getElementsByTagName("FiftydayMovingAverage")[0].childNodes[0].nodeValue + '</td>' + 
 			'<td>' + "<img src='http://chart.finance.yahoo.com/t?s=" + symbol + "&amp;lang=en-US&amp;region=US&amp;width=300&amp;height=180'>" + '</td>' + '</tr>');
 			var val = x[t].getElementsByTagName("Change")[0].childNodes[0].nodeValue;
@@ -64,9 +64,29 @@ $( "#dialog-1" ).dialog({
 });
 
 
-function myFunction(){
-	   $( "#dialog-1" ).dialog( "open" );
+// $(".add_btn").click(function(){
+// 	var id = this.id;
+// 	alert(id);
+// 	$( "#dialog-1" ).css({'display' : ''});
+// 	$( "#dialog-1" ).dialog( "open" );
+// });
+function openDialog(clicked_id){
+		//Use button ID to get i so that you can grab price+i
+		var id = clicked_id;
+		var thenum = id.replace( /^\D+/g, ''); // replace all leading non-digits with nothing
+		var priceid = "price" + thenum
+		var pricedata = document.getElementById(priceid);
+		$( "#dialog_price" ).val(pricedata.innerHTML);
+		$('#Cost').val(pricedata.innerHTML);
+		$( "#dialog-1" ).css({'display' : ''});
+		$( "#dialog-1" ).dialog( "open" );
 }
+
+$('#quantity').on('keyup',function(){
+    var tot = $('#dialog_price').val() * this.value;
+    $('#Cost').val(tot);
+    //$('#total').val(tot);
+});
 
 
 //jQuery for dropdown on hover
