@@ -64,9 +64,8 @@
                 // Process Value Information
                 value = td_value.text().toString();
                 // Catch When it is Span Tag instead of P tag
-                if( value == false){
+                if( value == false || value == "-"){
                     value = td_value.span.text().toString();
-                    value = value + "" + td_value.span.text().toString();
                 }
                 //Replace B, M, K with Proper Trailing Zeroes/Decimal Handling
                 if(value.match(/[Bb]$/)){ value = value.replace(/[Bb]$/,""); value = value * 1000000000;}
