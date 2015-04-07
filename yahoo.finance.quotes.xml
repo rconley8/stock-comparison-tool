@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table xmlns="http://query.yahooapis.com/v1/schema/table.xsd">
+    <meta>
+        <author>
+            Original: Ryan Hoium
+            Updated by: James Dyer
+        </author>
+        <description>
+            Yahoo Finance - Key Statistics by Stock Symbol
+        </description>
+        <sampleQuery>
+            SELECT * FROM {table} WHERE symbol='T'
+        </sampleQuery>
+    </meta>
+    <bindings>
+        <select itemPath="" produces="XML">
+            <urls>
+                <url>
+                </url>
+            </urls>
+            <inputs>
+            	<key id="symbol" type="xs:string" paramType="variable" required="true" />
+            </inputs>
+            <execute>
+                <![CDATA[
+            // Setup Query from finance.yahoo.com
+            var url="http://finance.yahoo.com/q?s=" + symbol;
+            var xpath = "//table[@id='table1' or @id='table2']/tbody/tr";
+            var query = y.query("select * from html where url=@url and compat='html5' and xpath=@xpath", {url:url, xpath:xpath});
+            var keystatsquery = query.results;
+
+            // Process Results
+            var statsdata = <stats symbol={symbol}></stats>;
+			if ( keystatsquery.td.length() !== 0 )
+			{
+
+            var i = 0;
+            while ( i < keystatsquery.td.length()) 
+			{
+                // Setup to Process Two 'td' Elements at a Time - Name and Value Pairs
+                var td_param_name = keystatsquery.th[i];
+                var td_value = keystatsquery.td[i];
+                var param_name = "";
+                var attr = "";
+                var value = "";
+                i = i + 2;
+                
+                // Process Parameter Name and any Associated Attributes (Timeframe, Stock Split Info)
+                param_name = td_param_name.text().toString();
+                param_name = String(param_name.replace(/:/g,""));
+                attr = String(param_name.match(/\(.*\)/));
+                attr = String(attr.trim());
+                attr = attr.replace(/[\(\)]/g,"");
+                param_name = String(param_name.replace(/\(.*\)/g,""));
+                param_name = String(param_name.replace(/\s/g,""));
+                param_name = String(param_name.replace(/\&/g,""));
+                param_name = String(param_name.replace(/\//g,""));
+                param_name = String(param_name.replace(/\%/g,"Percentage"));
+                param_name = String(param_name.replace(/-/g,"_"));
+                if(param_name.match(/^\d/)){ param_name = String("p_" + param_name);}
+                param_name = param_name.trim();
+
+                // Process Value Information
+                value = td_value.text().toString();
+                // Catch When it is Span Tag instead of P tag
+                if( value == false){
+                    value = td_value.span.text().toString();
+                }
+                //Replace B, M, K with Proper Trailing Zeroes/Decimal Handling
+                if(value.match(/[Bb]$/)){ value = value.replace(/[Bb]$/,""); value = value * 1000000000;}
+                else if(value.match(/[Mm]$/)){ value = value.replace(/[Mm]$/,""); value = value * 1000000;}
+                else if(value.match(/[Kk]$/)){ value = value.replace(/[Kk]$/,""); value = value * 1000;}
+
+                // Append Value Pair to XML Structure
+                if(attr !== "null"){ statsdata.appendChild(<{param_name} term={attr}> {value} </{param_name}>);}
+                else {  statsdata.appendChild(<{param_name}> {value} </{param_name}>);}
+
+			}		
+		    }
+            // Return statsdata strucuture
+            response.object = statsdata;
+		]]>
+            </execute>
+        </select>
+    </bindings>
+</table>
