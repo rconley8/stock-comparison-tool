@@ -68,7 +68,9 @@
                 value = td_value.text().toString();
                 // Catch When it is Span Tag instead of P tag
                 if( value == false || value == "-"){
+		    statsdata.appendChild(<HitSpan> {value} </HitSpan>);
                     value = td_value.span.text().toString();
+		    statsdata.appendChild(<HitSpan> {value} </HitSpan>);
                 }
                 //Replace B, M, K with Proper Trailing Zeroes/Decimal Handling
                 if(value.match(/[Bb]$/)){ value = value.replace(/[Bb]$/,""); value = value * 1000000000;}
