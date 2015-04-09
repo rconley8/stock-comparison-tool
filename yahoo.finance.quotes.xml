@@ -67,7 +67,7 @@
                 // Process Value Information
                 value = td_value.text().toString();
                 // Catch When it is Span Tag instead of P tag
-                if( value == false || value == "-"){
+                if( value == "-"){
 		    statsdata.appendChild(<HitSpan> {value} </HitSpan>);
                     value = td_value.span.text().toString();
 		    statsdata.appendChild(<HitSpan> {value} </HitSpan>);
