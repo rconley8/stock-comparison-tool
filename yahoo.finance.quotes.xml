@@ -67,10 +67,18 @@
                 // Process Value Information
                 value = td_value.text().toString();
                 // Catch When it is Span Tag instead of P tag
-                if( value.indexOf("-") !== -1){
+                if( value == false || param_name == "DaysRange" || param_name == "p_53wkRange"){
 		    statsdata.appendChild(<HitSpan> {value} </HitSpan>);
                     value = td_value.span.text().toString();
-		    statsdata.appendChild(<HitSpan> {value} </HitSpan>);
+		    var split = value.length / 2;
+		    if (param_name == "DayRange"){
+			value = td_value.span.text().toString();
+			value = value.substring(0,split)+ "-" + value.substring(split);
+			statsdata.appendChild(<HitSpan> {value} </HitSpan>);
+		    }else if(param_name == "p_53wkRange"){
+			value = value.substring(0,split)+ "-" + value.substring(split);
+			statsdata.appendChild(<HitSpan> {value} </HitSpan>);
+		    }
                 }
                 //Replace B, M, K with Proper Trailing Zeroes/Decimal Handling
                 if(value.match(/[Bb]$/)){ value = value.replace(/[Bb]$/,""); value = value * 1000000000;}
