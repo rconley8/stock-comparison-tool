@@ -68,16 +68,15 @@
                 value = td_value.text().toString();
                 // Catch When it is Span Tag instead of P tag
                 if( value == false || param_name == "DaysRange" || param_name == "p_52wkRange"){
-		    statsdata.appendChild(<HitSpan> {value} </HitSpan>);
                     value = td_value.span.text().toString();
-		    var split = value.length / 2;
 		    if (param_name == "DaysRange"){
-			value = td_value.span.text().toString();
+			value = value.span.text().toString();
+			var split = value.length / 2;
 			value = value.substring(0,split)+ "-" + value.substring(split);
 			statsdata.appendChild(<HitSpan> {value} </HitSpan>);
 		    }else if(param_name == "p_52wkRange"){
+			var split = value.length / 2;
 			value = value.substring(0,split)+ "-" + value.substring(split);
-			statsdata.appendChild(<HitSpan> {value} </HitSpan>);
 		    }
                 }
                 //Replace B, M, K with Proper Trailing Zeroes/Decimal Handling
