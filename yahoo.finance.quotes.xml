@@ -25,7 +25,7 @@
                 <![CDATA[
             // Setup Query from finance.yahoo.com
             var url="http://finance.yahoo.com/q?s=" + symbol;
-            var xpath = "//table[@id='table1' or @id='table2']/tbody/tr/th | //table[@id='table1' or @id='table2']/tbody/tr/td | //span[@class='time_rtq_ticker']/span";
+            var xpath = "//table[@id='table1' or @id='table2']/tbody/tr/th | //table[@id='table1' or @id='table2']/tbody/tr/td | //span[@class='time_rtq_ticker']/span | //div[@id='yfi_analysts']/div/table/tbody/tr/th | //div[@id='yfi_analysts']/div/table/tbody/tr/td";
             var query = y.query("select * from html where url=@url and compat='html5' and xpath=@xpath", {url:url, xpath:xpath});
             var keystatsquery = query.results;
 
