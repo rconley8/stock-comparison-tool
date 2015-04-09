@@ -70,10 +70,10 @@
                 if( value == false || param_name == "DaysRange" || param_name == "p_52wkRange"){
                     value = td_value.span.text().toString();
 		    if (param_name == "DaysRange"){
-			cleanText = value.replace(/<\/?[^>]+(>|$)/g, "");
+			value = td_value.span.span.text().toString();
 			var split = value.length / 2;
 			value = value.substring(0,split)+ "-" + value.substring(split);
-			statsdata.appendChild(<HitSpan> {cleanText} </HitSpan>);
+			statsdata.appendChild(<HitSpan> {value} </HitSpan>);
 		    }else if(param_name == "p_52wkRange"){
 			var split = value.length / 2;
 			value = value.substring(0,split)+ "-" + value.substring(split);
