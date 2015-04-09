@@ -73,7 +73,6 @@
 			value = td_value.span.span.text().toString();
 			var split = value.length / 2;
 			value = value.substring(0,split)+ "-" + value.substring(split);
-			statsdata.appendChild(<HitSpan> {value} </HitSpan>);
 		    }else if(param_name == "p_52wkRange"){
 			var split = value.length / 2;
 			value = value.substring(0,split)+ "-" + value.substring(split);
