@@ -70,7 +70,7 @@
                 if( value == false || param_name == "DaysRange" || param_name == "p_52wkRange"){
                     value = td_value.span.text().toString();
 		    if (param_name == "DaysRange"){
-			value = value.span.text().toString();
+			console.log(value);
 			var split = value.length / 2;
 			value = value.substring(0,split)+ "-" + value.substring(split);
 			statsdata.appendChild(<HitSpan> {value} </HitSpan>);
