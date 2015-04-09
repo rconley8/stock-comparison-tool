@@ -1,12 +1,4 @@
-$('#stock_form').submit(function(event){
-	event.preventDefault();
-	$('#data_container_generate').trigger('click');
-});
-
-
-
-$("#data_container_generate").click(function ()
-{
+function getSymbolData(symbol){
     $(".data_container").html("");
 	if (window.XMLHttpRequest)
 	{// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -17,118 +9,54 @@ $("#data_container_generate").click(function ()
 		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 	}
 	
-	var arr = $("input[name='ticker_symbols']").val().split(", ");
+        //run calculations on symbols here
+        i=0;
+        
+        $(".data_container").append('<div class="data_child" id="stock_info'+i+'"><table id="table_info'+i+'"> </table></div>');
+		
+	xmlhttp.open("GET","http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22" + symbol + "%22)&env=store://datatables.org/alltableswithkeys",false);
+	xmlhttp.send();
+	xmlDoc=xmlhttp.responseXML;
+	x=xmlDoc.getElementsByTagName('quote');
 	
-	ProcessSymbols(arr);
-//     for (i=0; i<arr.length; i++)
-//     {
-//         var symbol = arr[i].toString();
-//         //run calculations on symbols here
-//         
-//         
-//         $(".data_container").append('<div class="data_child" id="stock_info'+i+'"> </div>');
-// 		
-// 		xmlhttp.open("GET","http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22" + symbol + "%22)&env=store://datatables.org/alltableswithkeys",false);
-// 		xmlhttp.send();
-// 		xmlDoc=xmlhttp.responseXML;
-// 		x=xmlDoc.getElementsByTagName('quote');
-// 		
-// 		for (t=0;t<x.length;t++)
-// 		{
-// 			$('#stock_info'+i+'').append(x[t].getElementsByTagName("Name")[0].childNodes[0].nodeValue);
-// 			$('#stock_info'+i+'').append(" (" + x[t].getAttribute('symbol') + ")");
-// 			$('#stock_info'+i+'').append("<br>");
-// 			$('#stock_info'+i+'').append("<p>");
-// 			$('#stock_info'+i+'').append("Days Low: " + x[t].getElementsByTagName("DaysLow")[0].childNodes[0].nodeValue);
-// 			$('#stock_info'+i+'').append("<br>");
-// 			$('#stock_info'+i+'').append("Days High: " + x[t].getElementsByTagName("DaysHigh")[0].childNodes[0].nodeValue);
-// 			$('#stock_info'+i+'').append("<br>");
-// 			$('#stock_info'+i+'').append("Day Change: <span id='change" + i + "'>" + x[t].getElementsByTagName("Change")[0].childNodes[0].nodeValue + "</span> ");
-// 			$('#stock_info'+i+'').append("<span id='percentchange" + i + "'>(" + x[t].getElementsByTagName("PercentChange")[0].childNodes[0].nodeValue + ")</span>");
-// 			$('#stock_info'+i+'').append("<br>");
-// 			$('#stock_info'+i+'').append("Stock Price: " + x[t].getElementsByTagName("LastTradePriceOnly")[0].childNodes[0].nodeValue);
-// 			$('#stock_info'+i+'').append("<br>");
-// 			$('#stock_info'+i+'').append("50 Day Moving Average: " + x[t].getElementsByTagName("FiftydayMovingAverage")[0].childNodes[0].nodeValue);
-// 			$('#stock_info'+i+'').append("<br>");
-// 			$('#stock_info'+i+'').append("<img src='http://chart.finance.yahoo.com/t?s=" + symbol + "&amp;lang=en-US&amp;region=US&amp;width=300&amp;height=180'>");
-// 			$('#stock_info'+i+'').append("</p>");
-// 			var val = x[t].getElementsByTagName("Change")[0].childNodes[0].nodeValue;
-// 			var find = val.search("-");
-// 			if (find != -1)
-// 			{
-// 				document.getElementById('change'+i+'').style.color = "red"
-// 				document.getElementById('percentchange'+i+'').style.color = "red"
-// 			}
-// 			else
-// 			{
-// 				document.getElementById('change'+i+'').style.color = "green"
-// 				document.getElementById('percentchange'+i+'').style.color = "green"
-// 			}
-// 		}
-//     } 
+	for (t=0;t<x.length;t++)
+	{	
+		$('#table_info'+i+'').append("<tr><td>Name</td><td>Days Low</td><td>Days High</td><td>Day Change</td><td>Percent Change</td><td>Stock Price</td><td>50 Day Moving Average</td><td>Yahoo Finance Chart</td></tr>");	
+		$('#table_info'+i+'').append('<td>' + x[t].getElementsByTagName("Name")[0].childNodes[0].nodeValue + ' (' + x[t].getAttribute('symbol') + ') <button type="button" onClick="myFunction()" id="GOOG" value="GOOG">Add to Portfolio</button></td>');
+		$('#table_info'+i+'').append('<td>' + x[t].getElementsByTagName("DaysLow")[0].childNodes[0].nodeValue + '</td>');
+		$('#table_info'+i+'').append('<td>' + x[t].getElementsByTagName("DaysHigh")[0].childNodes[0].nodeValue + '</td>');
+		$('#table_info'+i+'').append('<td>' + "<span id='change" + i + "'>" + x[t].getElementsByTagName("Change")[0].childNodes[0].nodeValue + "</span> " + '</td>');
+		$('#table_info'+i+'').append('<td>' + "<span id='percentchange" + i + "'>(" + x[t].getElementsByTagName("PercentChange")[0].childNodes[0].nodeValue + ")</span>" + '</td>');
+		$('#table_info'+i+'').append('<td>' + x[t].getElementsByTagName("LastTradePriceOnly")[0].childNodes[0].nodeValue + '</td>');
+		$('#table_info'+i+'').append('<td>' + x[t].getElementsByTagName("FiftydayMovingAverage")[0].childNodes[0].nodeValue + '</td>');
+		$('#table_info'+i+'').append('<td>' + "<img src='http://chart.finance.yahoo.com/t?s=" + symbol + "&amp;lang=en-US&amp;region=US&amp;width=300&amp;height=180'>" + '</td></tr>');
+
+		var val = x[t].getElementsByTagName("Change")[0].childNodes[0].nodeValue;
+		var find = val.search("-");
+		if (find != -1)
+		{
+			document.getElementById('change'+i+'').style.color = "red"
+			document.getElementById('percentchange'+i+'').style.color = "red"
+		}
+		else
+		{
+			document.getElementById('change'+i+'').style.color = "green"
+			document.getElementById('percentchange'+i+'').style.color = "green"
+		}
+	}
+
+}
+
+$( "#dialog-1" ).dialog({
+   autoOpen: false,  
 });
 
-// $(".symbol").click(function ()
-// {	
-// 	//var arr = $("input[name='ticker_symbols']").val().split(", ");
-// 	//Using example here:  http://stackoverflow.com/questions/16280065/get-text-by-class-in-jquery
-// 	//var arr2 = $(".symbol").prop("value");
-// 	//alert(arr2);
-// 	alert($("#AAPL").prop("value"));
-// 	//ProcessSymbols(arr);
-// }
 
-function ProcessSymbols(arr)
-{
-	//loops over array and processes symbols
-	for (i=0; i<arr.length; i++)
-    {
-        var symbol = arr[i].toString();
-        //run calculations on symbols here
-        
-        
-        $(".data_container").append('<div class="data_child" id="stock_info'+i+'"> </div>');
-		
-		xmlhttp.open("GET","http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22" + symbol + "%22)&env=store://datatables.org/alltableswithkeys",false);
-		xmlhttp.send();
-		xmlDoc=xmlhttp.responseXML;
-		x=xmlDoc.getElementsByTagName('quote');
-		
-		for (t=0;t<x.length;t++)
-		{
-			$('#stock_info'+i+'').append(x[t].getElementsByTagName("Name")[0].childNodes[0].nodeValue);
-			$('#stock_info'+i+'').append(" (" + x[t].getAttribute('symbol') + ")");
-			$('#stock_info'+i+'').append("<br>");
-			$('#stock_info'+i+'').append("<p>");
-			$('#stock_info'+i+'').append("Days Low: " + x[t].getElementsByTagName("DaysLow")[0].childNodes[0].nodeValue);
-			$('#stock_info'+i+'').append("<br>");
-			$('#stock_info'+i+'').append("Days High: " + x[t].getElementsByTagName("DaysHigh")[0].childNodes[0].nodeValue);
-			$('#stock_info'+i+'').append("<br>");
-			$('#stock_info'+i+'').append("Day Change: <span id='change" + i + "'>" + x[t].getElementsByTagName("Change")[0].childNodes[0].nodeValue + "</span> ");
-			$('#stock_info'+i+'').append("<span id='percentchange" + i + "'>(" + x[t].getElementsByTagName("PercentChange")[0].childNodes[0].nodeValue + ")</span>");
-			$('#stock_info'+i+'').append("<br>");
-			$('#stock_info'+i+'').append("Stock Price: " + x[t].getElementsByTagName("LastTradePriceOnly")[0].childNodes[0].nodeValue);
-			$('#stock_info'+i+'').append("<br>");
-			$('#stock_info'+i+'').append("50 Day Moving Average: " + x[t].getElementsByTagName("FiftydayMovingAverage")[0].childNodes[0].nodeValue);
-			$('#stock_info'+i+'').append("<br>");
-			$('#stock_info'+i+'').append("<img src='http://chart.finance.yahoo.com/t?s=" + symbol + "&amp;lang=en-US&amp;region=US&amp;width=300&amp;height=180'>");
-			$('#stock_info'+i+'').append("</p>");
-			var val = x[t].getElementsByTagName("Change")[0].childNodes[0].nodeValue;
-			var find = val.search("-");
-			if (find != -1)
-			{
-				document.getElementById('change'+i+'').style.color = "red"
-				document.getElementById('percentchange'+i+'').style.color = "red"
-			}
-			else
-			{
-				document.getElementById('change'+i+'').style.color = "green"
-				document.getElementById('percentchange'+i+'').style.color = "green"
-			}
-		}
-		return false;
-	}
+function myFunction(){
+	   $( "#dialog-1" ).dialog( "open" );
 }
+
+
 //jQuery for dropdown on hover
 $('.dropdown-toggle').click(function() {
     var location = $(this).attr('href');

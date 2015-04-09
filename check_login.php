@@ -35,7 +35,7 @@ session_start();
 // Register $myusername, $mypassword and redirect to file "login_success.php"
 $_SESSION['myusername'] = $myusername;
 $_SESSION['mypassword'] = $encrypt_password;
-header("location:login_success.php");
+header("location:portfolio.php");
 }
 else {
 header("location:signin.html?l=failed");

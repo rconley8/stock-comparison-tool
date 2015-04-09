@@ -137,36 +137,24 @@ if(!$_SESSION['myusername']){
                 if ($totalpercent > 0){
                   echo "<td class=\"dp\" align=\"right\" style=\"color:green\">+". $totalpercent . "%</td></tr>";
                 } else {
-                  echo "<td class=\"dp\" align=\"right\" style=\"color:red\">-". $totalpercent . "%</td></tr>";
+                  echo "<td class=\"dp\" align=\"right\" style=\"color:red\">". $totalpercent . "%</td></tr>";
                 }
                 echo "<tr><td class=\"dp\">Cash:</td><td class=\"dp\" align=\"right\"> $" . number_format($cash,2) . "</td></tr>";
                 echo "<tr><td class=\"dp\">Equities:</td><td class=\"dp\" align=\"right\"> $". number_format($totalMarketValue,2) . "</td>";
                 if ($equitypercent > 0){
                   echo "<td class=\"dp\" align=\"right\" style=\"color:green\">+". $equitypercent . "%</td></tr>";
                 } else {
-                  echo "<td class=\"dp\" align=\"right\" style=\"color:red\">-". $equitypercent . "%</td></tr>";
+                  echo "<td class=\"dp\" align=\"right\" style=\"color:red\">". $equitypercent . "%</td></tr>";
                 }
                 echo "</table><br>";
               }
               
               // Grabs all portfolio entries for current user
-              $portfoliosql = "SELECT * FROM portfolio Where userid='$userid'";
+              $portfoliosql = "SELECT * FROM portfolio Where userid='$userid' ORDER BY stocksymbol";
               $result = $conn->query($portfoliosql);
               if ($result->num_rows > 0) {
                 // output data of each row
-                //Gets gets last date stock market was open
-                if (getCurrentDay() == "Sat"){
-                  $yesterday = date("Y-m-d", strtotime("-2 day"));
-                }elseif (getCurrentDay() == "Sun"){
-                  $yesterday = date("Y-m-d", strtotime("-3 day"));
-                }elseif (getCurrentDay() == "Mon" && time() < strtotime("9:30") || getCurrentDay() == "Tue" && time() < strtotime("9:30")){
-                  $yesterday = date("Y-m-d", strtotime("-4 day"));
-                }elseif (getCurrentDay() == "Mon" && time() > strtotime("9:30")){
-                  $yesterday = date("Y-m-d", strtotime("-3 day"));
-                }else{
-                  $yesterday = date("Y-m-d", strtotime("-1 day"));
-                }
-                
+              
                 // Creates table for portfolio
                 echo "<table><tr><th class=\"pt\">Stock</th><th class=\"pt\"># of Shares</th>
                       <th class=\"pt\">Current Price</th><th class=\"pt\">Market Value</th>
@@ -177,19 +165,9 @@ if(!$_SESSION['myusername']){
                     $stocksymbol = $row["stocksymbol"];
                     
                     //Grabs previous days close price for current stock symbol
-                    $prevclosepricesql = "SELECT * FROM stockinfo WHERE Symbol = '$stocksymbol' AND Date = '$yesterday'";
-                    $prevcloseresult = $conn->query($prevclosepricesql);
-                    if ($prevcloseresult->num_rows > 0){
-                      $prevcloserow = $prevcloseresult->fetch_assoc();
-                      $prevclose = $prevcloserow["Close"];
-                    }
-                    
-                    //$stockPriceSql = "Select * FROM stockinfo WHERE Symbol = '$stocksymbol' AND Date = '$yesterday'";
-                    //$stockpriceresult = $conn->query($stockPriceSql);
-                    //if ($stockpriceresult->num_rows > 0){
-                      //$pricerow = $stockpriceresult->fetch_assoc();
-                      //$closeprice = $pricerow["Close"];
-                    $closeprice = number_format(getPrice(strtoupper($stocksymbol)),2);
+                    $keystats = simplexml_load_file("http://query.yahooapis.com/v1/public/yql?q=use%20%22https://raw.githubusercontent.com/rconley8/stock-comparison-tool/master/yahoo.finance.quotes.xml%22%20as%20keystatistics%3B%20SELECT%20*%20FROM%20keystatistics%20WHERE%20symbol%3D%27". $stocksymbol ."%27");
+                    $prevclose = doubleval($keystats->results->stats->PrevClose);
+                    $closeprice = doubleval($keystats->results->stats->CurrentPrice);
                     $marketValue = $closeprice * $row["numberofshares"];
                     $costBasis = $row["stockprice"] * $row["numberofshares"];
                     $daypricechange = number_format($closeprice - $prevclose, 2);

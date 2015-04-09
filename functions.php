@@ -1,18 +1,9 @@
 <?php
 
     function getPrice($stock){
-        $homepage = file_get_contents("http://www.google.com/finance/getprices?i=10&p=1m&f=d,o,h,l,c,v&df=cpct&q=" . $stock . "");
-        $testing = substr($homepage, 143);
-        $arr = explode(",",$testing);
-        if (time() < strtotime("16:00") && time() > strtotime("9:30")){
-            if(getCurrentDay() == 'Sat' || getCurrentDay() == 'Sun'){
-                return $arr[6];
-            }else{
-                return $arr[1];
-            }
-        } else {
-            return $arr[6];
-        }
+        $keystats = simplexml_load_file("http://query.yahooapis.com/v1/public/yql?q=use%20%22https://raw.githubusercontent.com/rconley8/stock-comparison-tool/master/yahoo.finance.quotes.xml%22%20as%20keystatistics%3B%20SELECT%20*%20FROM%20keystatistics%20WHERE%20symbol%3D%27". $stock ."%27");
+        $closeprice = $keystats->results->stats->CurrentPrice;
+        return $closeprice;
     }
     
     function getCurrentDay(){
@@ -26,7 +17,7 @@
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
                 $stocksymbol = $row["stocksymbol"];
-                $closeprice = number_format(getPrice(strtoupper($stocksymbol)),2);
+                $closeprice = getPrice($stocksymbol);
                 $marketValue = $closeprice * $row["numberofshares"];
                 $totalMarketValue += $marketValue;
             }
