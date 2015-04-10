@@ -19,6 +19,9 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+$stock = $_POST['symbol'];
+$numberofshares = $_POST['quantity'];
+$price = $_POST['price'];
 $cost = $_POST['cost'];
 
 $myusername = $_SESSION['myusername'];
@@ -49,5 +52,24 @@ $totalAvailableCash = $availableCash - $cost;
 
 $updateportfolio = "UPDATE portfolio_margin SET available_cash = '$totalAvailableCash', amount_invested = '$totalAmountInvested' WHERE userid = '$userid'";
 $result = $conn->query($updateportfolio);
+
+$grabportfolio = "SELECT * FROM portfolio WHERE userid = '$userid' and stocksymbol='$stock'";
+$result = $conn->query($grabportfolio);
+
+if($result->num_rows > 0){
+    $row = $result->fetch_assoc();
+    $currentprice = $row['stockprice'];
+    $currentnumberofshares = $row['numberofshares'];
+    $total = ($currentprice * $currentnumberofshares) + ($price * $numberofshares);
+    $totalnumberofshares = $currentnumberofshares + $numberofshares;
+    $newprice = number_format(($total/$totalnumberofshares), 2);
+    $addtoportfolio = "UPDATE portfolio_margin SET stockprice = '$newprice', numberofshares = '$totalnumberofshares' WHERE userid = '$userid' and stocksymbol = '$stock'";
+    $resultadd = $conn->query($addtoportfolio);
+}else{
+    $addtoportfolio = "INSERT INTO portfolio (userid, stocksymbol, stockprice, numberofshares) VALUES ('$userid', '$stock', '$price', '$numberofshares')";
+    $resultadd = $conn->query($addtoportfolio);
+}
+
+
 
 ?>
