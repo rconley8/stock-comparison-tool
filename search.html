@@ -74,13 +74,15 @@
 		</div>
     </div> <!-- /container -->
 	<div id="dialog-1" title="Add to Portfolio">
-		
-		<form>
+		<form action="check_login.php" method="post">
 			<fieldset>
 				<legend>
 					Choose your options below:
 				</legend>
 				<ol style="list-style-type:none;">
+					<li>
+						<label for="symbol">Stock</label>
+						<input type="text" name="symbol" id="symbol" value="0" readonly class="text ui-widget-content ui-corner-all">
 					<li>
 						<label for="quantity">Quantity</label>
 						<input type="text" name="quantity" id="quantity" value="1" class="text ui-widget-content ui-corner-all">

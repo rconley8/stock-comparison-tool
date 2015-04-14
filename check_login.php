@@ -16,7 +16,7 @@ $mypassword=$_POST['mypassword'];
 
 //encrypting password
 $encrypt_password=md5($mypassword);
-echo $encrypt_password;
+//echo $encrypt_password;
 
 // To protect MySQL injection (more detail about MySQL injection)
 $myusername = stripslashes($myusername);
