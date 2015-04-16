@@ -41,26 +41,25 @@ $("#data_container_generate").click(function ()
 		
 		for (t=0;t<x.length;t++)
 		{	
-			$('#table_info'+i+'').append("<tr><th>Name</th><th>Days Range</th><th>Day Change</th><th>Stock Price</th><th>50 Day Moving Average</th><th>Yahoo Finance Chart</th></tr>");	
+			$('#table_info'+i+'').append("<tr><th>Name</th><th>Days Range</th><th>Stock Price</th><th>50 Day Moving Average</th><th>Yahoo Finance Chart</th></tr>");	
 			$('#table_info'+i+'').append('<tr>' + 
 			"<td id='sym" + i + "'>" + x[t].getElementsByTagName("Name")[0].childNodes[0].nodeValue + ' (' + x[t].getAttribute('symbol') + ') <button type="button" onClick="openDialog(this.id)" id="btn' + i + '" class="btn2">Add to Portfolio</button></td>' + 
 			'<td>' + x2[t].getElementsByTagName("DaysRange")[0].childNodes[0].nodeValue + '</td>' + 
-			'<td>' + "<span id='change" + i + "'>" + x[t].getElementsByTagName("Change")[0].childNodes[0].nodeValue + "</span> " + '</td>' + 
-			"<td id='price" + i + "'>" + x[t].getElementsByTagName("LastTradePriceOnly")[0].childNodes[0].nodeValue + '</td>' + 
+			"<td id='price" + i + "'>" + x2[t].getElementsByTagName("CurrentPrice")[0].childNodes[0].nodeValue + '</td>' + 
 			'<td>' + x[t].getElementsByTagName("FiftydayMovingAverage")[0].childNodes[0].nodeValue + '</td>' + 
 			'<td>' + "<img src='http://chart.finance.yahoo.com/t?s=" + symbol + "&amp;lang=en-US&amp;region=US&amp;width=300&amp;height=180'>" + '</td>' + '</tr>');
-			var val = x[t].getElementsByTagName("Change")[0].childNodes[0].nodeValue;
-			var find = val.search("-");
-			if (find != -1)
-			{
-				document.getElementById('change'+i+'').style.color = "red"
-				//document.getElementById('percentchange'+i+'').style.color = "red"
-			}
-			else
-			{
-				document.getElementById('change'+i+'').style.color = "green"
-				//document.getElementById('percentchange'+i+'').style.color = "green"
-			}
+			//var val = x[t].getElementsByTagName("Change")[0].childNodes[0].nodeValue;
+			//var find = val.search("-");
+// 			if (find != -1)
+// 			{
+// 				document.getElementById('change'+i+'').style.color = "red"
+// 				//document.getElementById('percentchange'+i+'').style.color = "red"
+// 			}
+// 			else
+// 			{
+// 				document.getElementById('change'+i+'').style.color = "green"
+// 				//document.getElementById('percentchange'+i+'').style.color = "green"
+// 			}
 		}
     } 
 });
