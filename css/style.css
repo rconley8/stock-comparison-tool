@@ -16,6 +16,7 @@ body {
 }
 
 .body_container {
+	font-family: 'Vollkorn', Georgia, Times, serif;
 	background: #F0F0F0;
 	border: 1px solid rgba(18, 83, 88, 1);
 	border-radius: 15px;
@@ -27,54 +28,70 @@ body {
 	padding-left: 3px;
 }
 
-#custom-bootstrap-menu.navbar-default .navbar-brand {
-    color: rgba(18, 83, 88, 1);
+#custom-bootstrap-menu.navbar-static-top .navbar-brand {
+    color: rgba(255, 255, 255, 1);
 }
 
-#custom-bootstrap-menu.navbar-default .navbar-brand:hover {
-    color: rgba(62, 92, 95, 1);
+#custom-bootstrap-menu.navbar-static-top .navbar-brand:hover {
+    color: rgba(255, 255, 255, 0.5);
 }
 
-#custom-bootstrap-menu.navbar-default {
+#custom-bootstrap-menu.navbar-static-top {
     font-size: 15px;
-    background-color: #F0F0F0;
-    border: 1px solid;
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 0px;
     border-color: #537C80;
     border-radius: 7px;
 }
 
-#custom-bootstrap-menu.navbar-default .navbar-nav>li>a {
-    color: rgba(18, 83, 88, 1);
-    background-color: #F0F0F0;
+#custom-bootstrap-menu.navbar {
+	font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 0px;
+    border-color: #537C80;
+    border-radius: 7px;
+    //width: 2000px;
 }
 
-#custom-bootstrap-menu.navbar-default .navbar-nav>li>a:hover,
-#custom-bootstrap-menu.navbar-default .navbar-nav>li>a:focus {
-    color: rgba(62, 92, 95, 1);
-    background-color: #FFFFFF;
+#custom-bootstrap-menu.navbar-static-top .navbar-nav>li>a {
+    color: rgba(255, 255, 255, 1);
+    background-color: rgba(0, 0, 0, 0);
 }
 
-#custom-bootstrap-menu.navbar-default .navbar-nav>.active>a,
-#custom-bootstrap-menu.navbar-default .navbar-nav>.active>a:hover,
-#custom-bootstrap-menu.navbar-default .navbar-nav>.active>a:focus {
-    color: rgba(62, 92, 95, 1);
-    background-color: rgba(231, 231, 231, 1);
+#custom-bootstrap-menu.navbar-static-top .navbar-nav>li>a:hover,
+#custom-bootstrap-menu.navbar-static-top .navbar-nav>li>a:focus {
+    color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(0, 0, 0, 0.5);
+	//margin: .4em;
+	cursor: pointer;
+	//background: #e1e1e1;
+	text-decoration: none;
+	//color: #666;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
-#custom-bootstrap-menu.navbar-default .navbar-toggle {
+#custom-bootstrap-menu.navbar-static-top .navbar-nav>.active>a,
+#custom-bootstrap-menu.navbar-static-top .navbar-nav>.active>a:hover,
+#custom-bootstrap-menu.navbar-static-top .navbar-nav>.active>a:focus {
+    color: rgba(255, 255, 255, 1);
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+#custom-bootstrap-menu.navbar-static-top .navbar-toggle {
     border-color: #ddd;
 }
 
-#custom-bootstrap-menu.navbar-default .navbar-toggle:hover,
-#custom-bootstrap-menu.navbar-default .navbar-toggle:focus {
+#custom-bootstrap-menu.navbar-static-top .navbar-toggle:hover,
+#custom-bootstrap-menu.navbar-static-top .navbar-toggle:focus {
     background-color: #ddd;
 }
-#custom-bootstrap-menu.navbar-default .navbar-toggle .icon-bar {
+#custom-bootstrap-menu.navbar-static-top .navbar-toggle .icon-bar {
     background-color: #888;
 }
 
-#custom-bootstrap-menu.navbar-default .navbar-toggle:hover .icon-bar,
-#custom-bootstrap-menu.navbar-default .navbar-toggle:focus .icon-bar {
+#custom-bootstrap-menu.navbar-static-top .navbar-toggle:hover .icon-bar,
+#custom-bootstrap-menu.navbar-static-top .navbar-toggle:focus .icon-bar {
     background-color: #000000;
 }
 
@@ -90,17 +107,6 @@ body {
 
 label {
     color: rgba(62, 92, 95, 1);
-}
-
-.btn {
-	background-color: #537C80;
-	border: 0px;
-	color: #FFFFFF;
-}
-
-.btn:hover {
-	background-color: #7CBABF;
-	border: 0px;
 }
 
 .dropdown-menu>li>a {
@@ -128,8 +134,9 @@ label {
 }
 
 .data_container {
-	padding-top: 20px;
-    //width: 100%;
+	padding-top: 10px;
+	padding-bottom: 15px;
+    width: 80%;
     margin-right: auto;
     margin-left: auto;
 }
@@ -140,17 +147,146 @@ label {
 	width: 800px;
 }
 
-th {
-	border: 0px solid white;
-	color: #537C80;
-}
 
 td {
 	border: 0px solid white;
 }
 
-#dialog-1 {
+.search_stocks {
+	width: 100%;
+}
+
+.search_table {
+	width: 80%;
+	mid-width: 30em;
+	box-shadow: 10px 10px 5px #888888;
+	border:1px solid #000000;
+	
+	-moz-border-radius-bottomleft:0px;
+	-webkit-border-bottom-left-radius:0px;
+	border-bottom-left-radius:0px;
+	
+	-moz-border-radius-bottomright:0px;
+	-webkit-border-bottom-right-radius:0px;
+	border-bottom-right-radius:0px;
+	
+	-moz-border-radius-topright:0px;
+	-webkit-border-top-right-radius:0px;
+	border-top-right-radius:0px;
+	
+	-moz-border-radius-topleft:0px;
+	-webkit-border-top-left-radius:0px;
+	border-top-left-radius:0px;
+}
+.search_table table{
+    border-spacing: 0;
+	height:100%;
+	margin:0px;padding:0px;
+}
+.search_table tr:last-child td:last-child {
+	-moz-border-radius-bottomright:0px;
+	-webkit-border-bottom-right-radius:0px;
+	border-bottom-right-radius:0px;
+}
+.search_table table tr:first-child td:first-child {
+	-moz-border-radius-topleft:0px;
+	-webkit-border-top-left-radius:0px;
+	border-top-left-radius:0px;
+}
+.search_table table tr:first-child td:last-child {
+	-moz-border-radius-topright:0px;
+	-webkit-border-top-right-radius:0px;
+	border-top-right-radius:0px;
+}
+.search_table tr:last-child td:first-child{
+	-moz-border-radius-bottomleft:0px;
+	-webkit-border-bottom-left-radius:0px;
+	border-bottom-left-radius:0px;
+}
+.search_table tr:hover td{
+	
+}
+
+.search_table tr:nth-child(odd){ background-color:#56aaff; }
+.search_table tr:nth-child(even){ background-color:#ffffff; }
+.search_table td{
+	vertical-align:middle;
+	border:1px solid #000000;
+	border-width:0px 1px 1px 0px;
+	text-align:left;
+	padding:12px;
+	font-size:10px;
+	font-family:Arial;
+	font-weight:normal;
+	color:#000000;
+}
+.search_table tr:last-child td{
+	border-width:0px 1px 0px 0px;
+}
+.search_table tr td:last-child{
+	border-width:0px 0px 1px 0px;
+}
+.search_table tr:last-child td:last-child{
+	border-width:0px 0px 0px 0px;
+}
+.search_table tr:first-child td{
+	background:-o-linear-gradient(bottom, #56aaff 5%, #cccccc 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #56aaff), color-stop(1, #cccccc) );
+	background:-moz-linear-gradient( center top, #56aaff 5%, #cccccc 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#56aaff", endColorstr="#cccccc");	background: -o-linear-gradient(top,#56aaff,cccccc);
+	background-color:#56aaff;
+	border:0px solid #000000;
+	text-align:center;
+	border-width:0px 0px 1px 1px;
+	font-size:14px;
+	font-family:Arial;
+	font-weight:bold;
+	color:#ffffff;
+}
+.search_table tr:first-child:hover td{
+	background:-o-linear-gradient(bottom, #56aaff 5%, #cccccc 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #56aaff), color-stop(1, #cccccc) );
+	background:-moz-linear-gradient( center top, #56aaff 5%, #cccccc 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#56aaff", endColorstr="#cccccc");	background: -o-linear-gradient(top,#56aaff,cccccc);
+
+	background-color:#56aaff;
+}
+.search_table tr:first-child td:first-child{
+	border-width:0px 0px 1px 0px;
+}
+.search_table tr:first-child td:last-child{
+	border-width:0px 0px 1px 1px;
+}
+
+th {
+	text-align: center;
+}
+.table-responsive
+{
+    overflow-x: auto;
+}
+
+.dialog {
 	display: none;
+}
+
+#progressbar {
+	display: none;
+}
+
+.ui-wait-button .ui-icon-waiting {
+   background-image: url("../res/waitbutton-loading.gif");
+   background-position: 0 center;
+}
+
+.btn {
+	background-color: #338BFF;
+	border: 0px;
+	color: #FFFFFF;
+}
+
+.btn:hover {
+	background-color: #8ABDFF;
+	border: 0px;
+	color: #ffffff;
 }
 
 .btn2 {
@@ -178,6 +314,10 @@ td {
   background: #537C80;
   text-decoration: none;
 }
+
+legend {
+	font-size: 120%;
+}
   
 @media only screen and (min-width : 768px) {
     /* Make Navigation Toggle on Desktop Hover */
@@ -186,6 +326,41 @@ td {
     }
 }
 
+
+.loading { margin: auto; }
+
+.loading span {
+  line-height: 32px;
+  margin-left: 12px;
+  font-size: 16px;
+  vertical-align: middle;
+}
+
+.loading img { vertical-align: middle; }
+
+.loading_wrp {
+  background-color: #FFF;
+  display: block;
+  height: 100%;
+  left: 0;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 1020;
+}
+
+.loading_wrp .x16 span {
+  line-height: 16px;
+  font-size: 12px;
+  margin-left: 6px;
+}
+
+.loading_wrp .x32 img {
+  width: 32px;
+  height: 32px;
+}
 
 /*==================================================
 =            Bootstrap 3 Media Queries             =
