@@ -15,6 +15,34 @@ body {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d0e4f7', endColorstr='#87bcea',GradientType=1 ); /* IE6-9 */
 }
 
+.logo {
+	height: 50px;
+	width: 50px;
+	float: left;
+	-webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+.grow:hover {
+	height: 55px;
+	width: 55px;
+}
+
+.navbar-brand {
+	-webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+.navbar-brand:hover {
+	font-size: 22px;
+}
+
 .body_container {
 	font-family: 'Vollkorn', Georgia, Times, serif;
 	background: #F0F0F0;
