@@ -62,11 +62,11 @@
 			<div class="collapse navbar-collapse navbar-menubuilder">
 				<ul class="nav navbar-nav navbar-left">
 					<li><a href="index.html">Home</a></li>
-					<li class="dropdown">
+					<li class="dropdown active">
 					<a href="about.html" class="dropdown-toggle" aria-expanded="false">About <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
 						  <li><a href="help.html">How to...</a></li>
-						  <li><a href="definitions.html">Definitions</a></li>
+						  <li class="active"><a href="definitions.html">Definitions</a></li>
 						  <!--<li class="divider"></li>
 						  <li class="dropdown-header">Nav header</li>
 						  <li><a href="#">Separated link</a></li>
@@ -78,7 +78,7 @@
 				  <li><a href="contact.html">Contact</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-				  <li class="active"><a href="signin.html">Login<span class="sr-only">(current)</span></a></li>
+				  <li><a href="signin.html">Login<span class="sr-only">(current)</span></a></li>
 				  <li><a href="signup.html">Sign up</a></li>
 				</ul>
 			</div>
@@ -86,46 +86,22 @@
 	</div>
 
 	<div class="container">
-	<div class="body_container">
-      <p align="center" id="failedLogOn" style="color:red"></p>
-      <form align="center" class="form-signin" action="check_login.php" method="post">
-        <h2 class="form-signin-heading">Please sign in</h2>
-        <div align="center" class="form-group">
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input name="myusername" style="width: 30%" type="text" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input name="mypassword" style="width: 30%" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-        <div class="checkbox">
-          <label >
-            <input type="checkbox" value="remember-me"> Remember me
-          </label>
-          <a href="signup.html">Create account here!</a>
-        </div>
-        <button style="width: 30%" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-        </div>
-      </form>
-    </div>
-    </div>
-      
-      <script type="text/javascript">
-        var log = gup('l');
-        if (log == 'failed') {
-          document.getElementById("failedLogOn").innerHTML = "Username or Password is incorrect";
-        }else if (log == 'loggedOut') {
-          document.getElementById("failedLogOn").innerHTML = "You have been succesfully Logged Out!"
-        }
-        var reg = gup('r');
-        if (reg == 's') {
-          document.getElementById("failedLogOn").innerHTML = "User Account has been created successfully. Please login below.";
-        }
-      </script>
+	  <div class="body_container">
+		<h2 class="about">Definitions:</h2>
+		<div class="about">
+			<p>Put definitions here...</p>
+			
+		</div>
+	  </div>
+	</div> <!-- /container -->
 
-    
-
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="js/ie10-viewport-bug-workaround.js"></script>
+    <script src="js/script.js"></script>
   </body>
 </html>
