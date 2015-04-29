@@ -36,6 +36,8 @@ if ($result->num_rows > 0) {
     echo "0 results";
 }
 
+echo "USER ID:" . $userid;
+
 $portfoliosql = "SELECT * FROM portfolio_margin WHERE userid = '$userid'";
 $result = $conn->query($portfoliosql);
 if ($result->num_rows > 0) {
@@ -63,13 +65,13 @@ if($result->num_rows > 0){
     $total = ($currentprice * $currentnumberofshares) + ($price * $numberofshares);
     $totalnumberofshares = $currentnumberofshares + $numberofshares;
     $newprice = number_format(($total/$totalnumberofshares), 2);
-    $addtoportfolio = "UPDATE portfolio_margin SET stockprice = '$newprice', numberofshares = '$totalnumberofshares' WHERE userid = '$userid' and stocksymbol = '$stock'";
+    $addtoportfolio = "UPDATE portfolio SET stockprice = '$newprice', numberofshares = '$totalnumberofshares' WHERE userid = '$userid' and stocksymbol = '$stock'";
     $resultadd = $conn->query($addtoportfolio);
 }else{
     $addtoportfolio = "INSERT INTO portfolio (userid, stocksymbol, stockprice, numberofshares) VALUES ('$userid', '$stock', '$price', '$numberofshares')";
     $resultadd = $conn->query($addtoportfolio);
 }
 
-
+header("location:portfoliosuccess.php?s=$stock&q=$numberofshares&p=$price");
 
 ?>

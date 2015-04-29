@@ -1,4 +1,11 @@
-
+<?php
+//Checks to see if session is still valid
+include 'functions.php';
+session_start();
+if(!$_SESSION['myusername']){
+    header("location:signin.html");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -53,97 +60,47 @@
 	<div id="custom-bootstrap-menu" class="navbar navbar-static-top" role="navigation">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a href="index.html"><img src="IALogo.png" class="logo grow" alt="Investing Assistant"></a>
-				<a class="navbar-brand" href="index.html">Investing Assistant</a>
+				<a href="index.php"><img src="IALogo.png" class="logo grow" alt="Investing Assistant"></a>
+				<a class="navbar-brand" href="index.php">Investing Assistant</a>
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menubuilder"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
 				</button>
 			</div>
 			<div class="collapse navbar-collapse navbar-menubuilder">
 				<ul class="nav navbar-nav navbar-left">
-					<li><a href="index.html">Home</a></li>
-					<li class="dropdown">
-					<a href="about.html" class="dropdown-toggle" aria-expanded="false">About <span class="caret"></span></a>
+					<li><a href="index.php">Home</a></li>
+					<li class="dropdown active">
+					<a href="about.php" class="dropdown-toggle" aria-expanded="false">About <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-						  <li><a href="help.html">How to...</a></li>
-						  <li><a href="terms.html">Financial Terms</a></li>
-						  <!--<li class="divider"></li>
-						  <li class="dropdown-header">Nav header</li>
-						  <li><a href="#">Separated link</a></li>
-						  <li><a href="#">One more separated link</a></li>-->
+						  <li><a href="help.php">How to...</a></li>
+						  <li><a href="terms.php">Financial Terms</a></li>
 						</ul>
 					</li>
-					<li class="active"><a href="search.html">Search Stocks</a></li>
-				  <li><a href="compare.html">Compare Stocks</a></li>
-				  <li><a href="contact.html">Contact</a></li>
+					<li><a href="search.php">Search Stocks</a></li>
+				  <li><a href="compare.php">Compare Stocks</a></li>
+				  <li><a href="contact.php">Contact</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-				  <li><a href="signin.html">Login<span class="sr-only">(current)</span></a></li>
-				  <li><a href="signup.html">Sign up</a></li>
+				  <li><a href="portfolio.php">Welcome, <?php echo $_SESSION['myusername'] ?> </a></li>  
+				  <li><a href="Logout.php">Logout <span class="sr-only">(current)</span></a></li>
 				</ul>
 			</div>
 		</div>
 	</div>
-    <div class="container">
-		<div class="body_container">
-			<div class="search_stocks">
-				<form id="stock_form">
-					<label for="ticker_symbols">Input symbols here:</label><input type="search" name="ticker_symbols" />
-					<button type="button" id="data_container_generate">Generate Info</button>
-					<div id='PleaseWait' style='display: none;'><img src='res/loader.gif'/></div>
-					</br>
-					<p style="font-size:12px;color:rgba(62, 92, 95, 1);">Example: (GOOG, AAPL, YHOO...)</p>
-				</form>
-				
-				<div class="data_container table-responsive">
-					<!--<img src="res/loader.gif" id="loader" style"display:none"/>-->
-				</div>
-			</div>
-		</div>
-    </div> <!-- /container -->
-	<div id="dialog-1" class="dialog" title="Add to Portfolio">
-		<form action="check_login.php" method="post">
-			<fieldset>
-				<legend>
-					Choose your options below:
-				</legend>
-				<ol style="list-style-type:none;">
-					<li>
-						<label for="symbol">Stock</label>
-						<input type="text" name="symbol" id="symbol" value="0" readonly class="text ui-widget-content ui-corner-all">
-					<li>
-						<label for="quantity">Quantity</label>
-						<input type="text" name="quantity" id="quantity" value="1" class="text ui-widget-content ui-corner-all">
-					</li>
-					<li>
-						<label for="price">Price</label>
-						<!--<p name="price" id="dialog_price"></p>-->
-						<input type="text" name="price" id="dialog_price" value="0" readonly class="text ui-widget-content ui-corner-all">
-					</li>
-					<li>
-						<label for="cost">Cost</label>
-						<input type="text" name="cost" id="Cost" readonly value="$0.00" class="text ui-widget-content ui-corner-all">
-					</li>
-					<li>
-						<label for="cash">Available Funds</label>
-						<p name="cash" id="av_funds_output">Test</p>
-						<!--<input type="submit" tabindex="-1" style="position:absolute; top:-1000px">-->
-					</li>
-				</ol>
-			</fieldset>
-			<button type="button" id="add_btn" class="btn">Add</button>
-		</form>
-	</div>
-	<div id="dialog-2" class="dialog" title="Error">
-		<p>An error has occurred.  Please try again later.</p>
-	</div>
 
+	<div class="container">
+	  <div class="body_container">
+		<h2 class="about">How to use this website:</h2>
+		<div class="about">
+			<p>Instructions Here...</p>
+			
+		</div>
+	  </div>
+	</div> <!-- /container -->
+	
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-   
-    <link rel="stylesheet" href="js/plugins/jquery-ui-1.11.4.custom/jquery-ui.css">
-  	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-  	<script src="js/plugins/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="js/ie10-viewport-bug-workaround.js"></script>

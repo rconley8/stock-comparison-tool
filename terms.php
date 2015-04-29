@@ -1,3 +1,11 @@
+<?php
+//Checks to see if session is still valid
+include 'functions.php';
+session_start();
+if(!$_SESSION['myusername']){
+    header("location:signin.html");
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -22,6 +30,7 @@
 	<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96"/>
 	<link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192"/>
 	<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16"/>
+	<link rel="icon" href="/favicon.ico">
 	<link rel="manifest" href="/manifest.json"/>
 	<meta name="msapplication-TileColor" content="#ffc40d"/>
 	<meta name="msapplication-TileImage" content="/mstile-144x144.png"/>
@@ -46,39 +55,35 @@
   </head>
 
   <body>
-  <div class="header">
+<div class="header">
   
   </div>
 	<!-- Static navbar -->
 	<div id="custom-bootstrap-menu" class="navbar navbar-static-top" role="navigation">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a href="index.html"><img src="IALogo.png" class="logo grow" alt="Investing Assistant"></a>
-				<a class="navbar-brand" href="index.html">Investing Assistant</a>
+				<a href="index.php"><img src="IALogo.png" class="logo grow" alt="Investing Assistant"></a>
+				<a class="navbar-brand" href="index.php">Investing Assistant</a>
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menubuilder"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
 				</button>
 			</div>
 			<div class="collapse navbar-collapse navbar-menubuilder">
 				<ul class="nav navbar-nav navbar-left">
-					<li class="active"><a href="index.html">Home</a></li>
+					<li><a href="index.php">Home</a></li>
 					<li class="dropdown">
-					<a href="about.html" class="dropdown-toggle" aria-expanded="false">About <span class="caret"></span></a>
+					<a href="about.php" class="dropdown-toggle" aria-expanded="false">About <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-						  <li><a href="help.html">How to...</a></li>
-						  <li><a href="terms.html">Financial Terms</a></li>
-						  <!--<li class="divider"></li>
-						  <li class="dropdown-header">Nav header</li>
-						  <li><a href="#">Separated link</a></li>
-						  <li><a href="#">One more separated link</a></li>-->
+						  <li><a href="help.php">How to...</a></li>
+						  <li class="active"><a href="terms.php">Financial Terms</a></li>
 						</ul>
 					</li>
-					<li><a href="search.html">Search Stocks</a></li>
-				  <li><a href="compare.html">Compare Stocks</a></li>
-				  <li><a href="contact.html">Contact</a></li>
+					<li><a href="search.php">Search Stocks</a></li>
+				  <li><a href="compare.php">Compare Stocks</a></li>
+				  <li><a href="contact.php">Contact</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-				  <li><a href="signin.html">Login<span class="sr-only">(current)</span></a></li>
-				  <li><a href="signup.html">Sign up</a></li>
+				  <li><a href="portfolio.php">Welcome, <?php echo $_SESSION['myusername'] ?> </a></li>  
+				  <li><a href="Logout.php">Logout <span class="sr-only">(current)</span></a></li>
 				</ul>
 			</div>
 		</div>
@@ -87,13 +92,52 @@
 
       <!-- Main component for a primary marketing message or call to action -->
       <div class="container">
-      <div class="jumbotron body_container">
-        <h1>Investing Assistant<img src="res/IALogo.png" alt="Investing Assistant" height="200" width="200" align="right"></h1>
-        <p>Making sense of investing...</p>
-        <p>
-          <a class="btn btn-lg btn-primary" href="search.html" role="button">Start Comparing Stocks! &raquo;</a>
-        </p>
+      <div class="body_container">
+        <h3 class="terms">
+            <B>
+                Terms:
+            </B>
+        </h3>
+        <ul>
+            <li class="term_list">
+                Mean Recommendation - This is the expert investor's recommendation, ranked from 1-5. 1 meaning strong buy, 5 is a strong sell.
+            </li>
+            <li class="term_list">
+                Stock Price - This is the current amount it costs to purchase one share of the stock.
+            </li>
+             <li class="term_list">
+                Previous Close - This is the price of the stock at the end of the previous trading day.
+            </li>
+            <li class="term_list">
+                % Change - This is the percent the stock changes throughout the day. This is calculated by ((stock price-previous close)/previous close)(100)
+            </li>
+            <li class="term_list">
+                Day's Range - This shows the lowest price of the day and the highest price of the day. This helps investors see the volatility of the stock.
+            </li>
+            <li class="term_list">
+                Day's Change - This is another way to see the volatility of the stock. It is calculated by subtracting the lowest price of the day from the highest price of the day.
+            </li>
+            <li class="term_list">
+               52 Week Range - This shows the lowest price of the last 52 weeks and the highest price of the last 52 weeks. This helps investors see the volatility of the stock over a longer period of time. 
+            </li>
+            <li class="term_list">
+                Beta - This shows the riskiness of the stock. Beta is calculated by taking the natural log of a recent day minus the previous day (example ln(today-yesterday)) over a series of time and then averaging it out.
+            </li>
+            <li class="term_list">
+                PE - This is a valuation ratio of a company's current share price compared to its per-share earnings. It is calculated as Stock Price/Earnings per share.
+            </li>
+            <li class="term_list">
+                PEG Ratio - The price/earnings to growth (PEG) ratio is used to determine a stock's value while taking the company's earnings growth into account. It is calculated as PE/annual growth.
+            </li>
+            <li class="term_list">
+                50 Day Moving Average - This is the sum of the last 50 days' prices, divided by 50. It is used in technical analysis as an indicator on which way the price might head.
+            </li>
+            <li class="term_list">
+                Day's Change Chart - This is a chart showing the different prices of the stock throughout the different times of the trading day.
+            </li>
+        </ul>
       </div>
+           
 
     </div> <!-- /container -->
 
