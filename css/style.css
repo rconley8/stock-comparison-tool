@@ -25,6 +25,14 @@ body {
 	padding-left: 10px;
 }
 
+.terms {
+	padding-left: 20px;
+}
+
+.term_list {
+	padding: 5px;
+}
+
 .center {
 	margin-left: auto;
 	margin-right: auto;
