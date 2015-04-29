@@ -9,6 +9,13 @@ $tbl_name="members"; // Table name
 mysql_connect("$host", "$username", "$password")or die("cannot connect"); 
 mysql_select_db("$db_name")or die("cannot select DB");
 
+// Create connection
+$conn = new mysqli($host, $username, $password, $db_name);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
 // username and password sent from form
 $email = $_POST['email'];
 $myusername = $_POST['username']; 
@@ -30,6 +37,19 @@ if(mysql_num_rows($sql) == 0) {
         $query1 = "INSERT INTO members (email,username, password, firstname, lastname) VALUES ('$email','$myusername','$encrypt_password','$firstname','$lastname')";
         $data = mysql_query ($query1)or die(mysql_error());
         if($data) {
+            $useridsql = "SELECT id FROM Members WHERE username = '$myusername' ";
+            $result = $conn->query($useridsql);
+            
+            if ($result->num_rows > 0) {
+                // output data of each row
+                  $row = $result->fetch_assoc(); 
+                  $userid = $row["id"];
+            } else {
+                echo "0 results";
+            }
+            
+            $createportfolio = "INSERT INTO portfolio_margin (userid, available_cash, amount_invested) VALUES ('$userid','100000', '0')";
+            $portfolio = $conn->query($createportfolio);
             echo "YOUR REGISTRATION IS COMPLETED...";
             header("location:signin.html?r=s");
         }
