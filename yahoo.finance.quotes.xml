@@ -24,8 +24,8 @@
             <execute>
                 <![CDATA[
             // Setup Query from finance.yahoo.com
-            var url="http://finance.yahoo.com/q?s=" + symbol;
-            var xpath = "//table[@id='table1' or @id='table2']/tbody/tr/th | //table[@id='table1' or @id='table2']/tbody/tr/td | //span[@class='Fw(500) D(ib) Fz(42px)'] | //div[@id='yfi_analysts']/div/table/tbody/tr/th | //div[@id='yfi_analysts']/div/table/tbody/tr/td";
+            var url="http://finance.yahoo.com/quote/" + symbol;
+            var xpath = "//span[@class='Fw(500) D(ib) Fz(42px)']";
             var query = y.query("select * from html where url=@url and compat='html5' and xpath=@xpath", {url:url, xpath:xpath});
             var keystatsquery = query.results;
 
