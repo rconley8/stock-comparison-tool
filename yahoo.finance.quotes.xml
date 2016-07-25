@@ -31,8 +31,6 @@
 
             // Process Results
             var statsdata = <stats symbol={symbol}></stats>;
-			if ( keystatsquery.td.length() !== 0 )
-			{
 
 	    var span_value = keystatsquery.span[0];
 	    var value = span_value.text().toString();
@@ -89,7 +87,7 @@
                 else {  statsdata.appendChild(<{param_name}> {value} </{param_name}>);}
 
 			}		
-		    }
+		    
             // Return statsdata strucuture
             response.object = statsdata;
 		]]>
